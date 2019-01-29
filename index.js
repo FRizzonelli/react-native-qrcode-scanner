@@ -1,22 +1,11 @@
 'use strict';
 
-import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
-import {
-  StyleSheet,
-  Dimensions,
-  Vibration,
-  Animated,
-  Easing,
-  View,
-  Text,
-  Platform,
-  PermissionsAndroid,
-} from 'react-native';
-
-import Permissions from 'react-native-permissions';
+import React, { Component } from 'react';
+import { Animated, Dimensions, Easing, NativeModules, PermissionsAndroid, Platform, StyleSheet, Text, Vibration, View } from 'react-native';
 import { RNCamera as Camera } from 'react-native-camera';
+
+
 
 const PERMISSION_AUTHORIZED = 'authorized';
 const CAMERA_PERMISSION = 'camera';
@@ -110,12 +99,14 @@ export default class QRCodeScanner extends Component {
 
   componentWillMount() {
     if (Platform.OS === 'ios') {
-      Permissions.request(CAMERA_PERMISSION).then(response => {
+      const CameraManager = NativeModules.RNCameraManager || NativeModules.RNCameraModule;
+
+      CameraManager.checkVideoAuthorizationStatus().then(isAuthorized => {
         this.setState({
-          isAuthorized: response === PERMISSION_AUTHORIZED,
+          isAuthorized: isAuthorized,
           isAuthorizationChecked: true,
         });
-      });
+      })
     } else if (
       Platform.OS === 'android' &&
       this.props.checkAndroid6Permissions

@@ -26,8 +26,7 @@
     "url": "https://github.com/moaazsidat/react-native-qrcode-scanner/issues"
   },
   "dependencies": {
-    "prop-types": "^15.5.10",
-    "react-native-permissions": "^1.1.1"
+    "prop-types": "^15.5.10"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.3",
