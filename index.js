@@ -5,11 +5,6 @@ import React, { Component } from 'react';
 import { Animated, Dimensions, Easing, NativeModules, PermissionsAndroid, Platform, StyleSheet, Text, Vibration, View } from 'react-native';
 import { RNCamera as Camera } from 'react-native-camera';
 
-
-
-const PERMISSION_AUTHORIZED = 'authorized';
-const CAMERA_PERMISSION = 'camera';
-
 export default class QRCodeScanner extends Component {
   static propTypes = {
     onRead: PropTypes.func.isRequired,
